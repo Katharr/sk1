@@ -14,7 +14,7 @@ public class GUI implements ActionListener{
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        Font f = new Font("黑体", Font.BOLD, 28);
+        Font f = new Font("楷体", Font.BOLD, 28);
 
         JLabel welcome = new JLabel("刷课!");
         welcome.setFont(f);
