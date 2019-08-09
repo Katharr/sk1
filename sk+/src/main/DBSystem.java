@@ -8,7 +8,7 @@ public class DBSystem {
 
     //连接数据库
     private static Connection Conn;
-    private static String URL = "jdbc:mysql://8.6.8.58:3306/sk+";
+    private static String URL = "jdbc:mysql://8.6.8.58:3306/SHUAKE";
     private static String UserName = "root";
     private static String Password = "123456";
 

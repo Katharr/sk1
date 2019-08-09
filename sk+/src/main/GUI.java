@@ -1,32 +1,43 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.Font;
 
-public class GUI implements ActionListener{
+public class GUI {
 
     public GUI(String name) {
 
-        JFrame frame = new JFrame();
-        frame.setTitle(name);
-        frame.setSize(600, 450);
+        JFrame frame = new JFrame(name);
+        frame.setSize(300, 100);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        Font f = new Font("楷体", Font.BOLD, 28);
+        JPanel panel = new JPanel();
 
-        JLabel welcome = new JLabel("刷课!");
-        welcome.setFont(f);
-        frame.add(welcome);
+        Font f = new Font("黑体", Font.BOLD, 28);
 
+        JButton StartButton = new JButton();
+        StartButton.setText("开刷");
+        StartButton.setFont(f);
+
+        JButton ArrangeButton = new JButton();
+        ArrangeButton.setText("管理订单");
+        ArrangeButton.setFont(f);
+        ArrangeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new GUI_ArrangeOrders().Show();
+            }
+        });
+
+        panel.add(StartButton);
+        panel.add(ArrangeButton);
+
+        frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
