@@ -29,14 +29,14 @@ public class DBSystem {
         private static Statement stt;
         private static ResultSet set;
 
-        public static Object[][] SelectClass() {
+        public static Object[][] SelectCourse() {
             int num = 4;
             Object[][] obj = new Object[MAX][num];
             try {
                 conn = DBSystem.getConnection();
                 if (Conn == null)
                     return null;
-                String sql = "SELECT * FROM ClassTable";
+                String sql = "SELECT * FROM CourseTable";
                 stt = conn.createStatement();
                 set = stt.executeQuery(sql);
 
@@ -59,13 +59,13 @@ public class DBSystem {
             return obj;
         }
 
-        public boolean AddClass(String ClassId, String ClassPlat, String ClassName, String Price) {
+        public boolean AddCourse(String ClassId, String ClassPlat, String ClassName, String Price) {
             try {
                 conn = DBSystem.getConnection();
                 if (conn == null)
                     return false;
 
-                String sql = "INSERT INTO ClassTable VALUES(?,?,?);";
+                String sql = "INSERT INTO CourseTable VALUES(?,?,?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, ClassId);
                 ps.setString(2, ClassPlat);
@@ -85,13 +85,13 @@ public class DBSystem {
             return true;
         }
 
-        public boolean DeleteClass(String ClassId) {
+        public boolean DeleteCourse(String ClassId) {
             try {
                 conn = DBSystem.getConnection();
                 if (conn == null)
                     return false;
 
-                String sql = "DELETE FROM ClassTable WHERE ClassId=?;";
+                String sql = "DELETE FROM CourseTable WHERE ClassId=?;";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, ClassId);
                 ps.executeUpdate();
@@ -108,18 +108,18 @@ public class DBSystem {
             return true;
         }
 
-        public boolean UpdateClass(String ClassId, String ClassPlat, String ClassName, String Price) {
+        public boolean UpdateCourse(String ClassId, String ClassPlat, String ClassName, String Price) {
             try {
                 conn = DBSystem.getConnection();
                 if (conn == null)
                     return false;
 
-                String sql = "UPDATE ClassTable SET ClassId=?,ClassPlat=?,ClassName=?,WHERE ClassId=?;";
+                String sql = "UPDATE CourseTable SET ClassPlat=?,ClassName=?,Price=? WHERE ClassId=?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, ClassId);
-                ps.setString(2, ClassPlat);
-                ps.setString(3, ClassName);
-                ps.setString(4, Price);
+                ps.setString(1, ClassPlat);
+                ps.setString(2, ClassName);
+                ps.setString(3, Price);
+                ps.setString(4, ClassId);
                 ps.executeUpdate();
 
             } catch (SQLException e) {
